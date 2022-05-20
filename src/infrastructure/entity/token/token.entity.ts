@@ -5,7 +5,7 @@ export class TokenEntity {
     @PrimaryGeneratedColumn()
     ID: number
     @Column({
-        type: 'varchar'
+        type: 'varchar',
     })
     token: string
 }

@@ -8,7 +8,10 @@ async function bootstrap() {
         logger: ['log', 'error']
     });
     app.useGlobalPipes(new common_1.ValidationPipe({ whitelist: true }));
-    await app.listen(3000);
+    app.enableCors({
+        origin: '*'
+    });
+    await app.listen(process.env.PORT || 3000);
 }
 bootstrap().catch(err => console.log(err));
 //# sourceMappingURL=main.js.map

@@ -7,7 +7,10 @@ async function bootstrap() {
         logger: ['log', 'error']
     });
     app.useGlobalPipes(new ValidationPipe({whitelist:true}))
-    await app.listen(3000);
+    app.enableCors({
+        origin:'*'
+    })
+    await app.listen(process.env.PORT || 3000);
 }
 
 bootstrap().catch(err => console.log(err));

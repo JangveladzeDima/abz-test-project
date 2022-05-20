@@ -12,6 +12,9 @@ const user_controller_1 = require("./controller/user.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const domain_module_1 = require("../domain/domain.module");
 const token_controller_1 = require("./controller/token.controller");
+const user_entity_1 = require("./entity/user/user.entity");
+const position_entity_1 = require("./entity/position/position.entity");
+const token_entity_1 = require("./entity/token/token.entity");
 let InfrastructureModule = class InfrastructureModule {
 };
 InfrastructureModule = __decorate([
@@ -19,13 +22,19 @@ InfrastructureModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'postgres',
-                host: '127.0.0.1',
+                host: 'ec2-52-18-116-67.eu-west-1.compute.amazonaws.com',
                 port: 5432,
-                username: 'postgres',
-                password: 'dikadika007',
-                database: 'development-company',
-                autoLoadEntities: true,
-                synchronize: true
+                username: 'dttzsjjaiyxahs',
+                password: '3b71271f628582c05d2da0e9a37c0099abcdc3d2e8b348ed179a5af964e1e17a',
+                database: 'deub5k94jg21rn',
+                extra: {
+                    ssl: {
+                        rejectUnauthorized: false
+                    }
+                },
+                entities: [user_entity_1.UserEntity, position_entity_1.PositionEntity, token_entity_1.TokenEntity],
+                synchronize: true,
+                logging: false
             }),
             domain_module_1.DomainModule
         ],

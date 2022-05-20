@@ -35,6 +35,8 @@ export class UserController {
         @Req() req
     ) {
         try {
+            this.logger.log(registrationParams)
+            this.logger.log(file)
             const token = req.headers['authorization']
             const user = await this.userAdapter.create({
                 ...registrationParams,

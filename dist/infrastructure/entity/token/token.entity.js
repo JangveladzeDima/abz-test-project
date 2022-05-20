@@ -19,7 +19,7 @@ __decorate([
 ], TokenEntity.prototype, "ID", void 0);
 __decorate([
     (0, typeorm_1.Column)({
-        type: 'varchar'
+        type: 'varchar',
     }),
     __metadata("design:type", String)
 ], TokenEntity.prototype, "token", void 0);

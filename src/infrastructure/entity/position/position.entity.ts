@@ -6,7 +6,7 @@ export class PositionEntity {
     ID: number
     @Column({
         unique: true,
-        type: 'varchar'
+        type: 'varchar',
     })
     name: string
 }

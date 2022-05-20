@@ -20,7 +20,7 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)({
         unique: true,
-        type: 'varchar'
+        type: 'varchar',
     }),
     __metadata("design:type", String)
 ], PositionEntity.prototype, "name", void 0);

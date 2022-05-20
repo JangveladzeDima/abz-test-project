@@ -7,23 +7,23 @@ export class UserEntity {
     @PrimaryGeneratedColumn()
     ID: number
     @Column({
-        type: 'varchar'
+        type: 'varchar',
     })
     name: string
     @Column({
-        type: 'varchar'
+        type: 'varchar',
     })
     phone: string
     @Column({
-        type: 'varchar'
+        type: 'varchar',
     })
     email: string
     @Column({
-        type: 'varchar'
+        type: 'varchar',
     })
     photo: string
     @Column({
-        type: 'integer'
+        type: 'integer',
     })
     positionID: number
 

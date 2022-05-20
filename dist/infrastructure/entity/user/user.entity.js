@@ -20,31 +20,31 @@ __decorate([
 ], UserEntity.prototype, "ID", void 0);
 __decorate([
     (0, typeorm_2.Column)({
-        type: 'varchar'
+        type: 'varchar',
     }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "name", void 0);
 __decorate([
     (0, typeorm_2.Column)({
-        type: 'varchar'
+        type: 'varchar',
     }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "phone", void 0);
 __decorate([
     (0, typeorm_2.Column)({
-        type: 'varchar'
+        type: 'varchar',
     }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "email", void 0);
 __decorate([
     (0, typeorm_2.Column)({
-        type: 'varchar'
+        type: 'varchar',
     }),
     __metadata("design:type", String)
 ], UserEntity.prototype, "photo", void 0);
 __decorate([
     (0, typeorm_2.Column)({
-        type: 'integer'
+        type: 'integer',
     }),
     __metadata("design:type", Number)
 ], UserEntity.prototype, "positionID", void 0);

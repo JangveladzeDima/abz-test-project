@@ -26,6 +26,8 @@ let UserController = class UserController {
     }
     async userRegistration(registrationParams, file, req) {
         try {
+            this.logger.log(registrationParams);
+            this.logger.log(file);
             const token = req.headers['authorization'];
             const user = await this.userAdapter.create(Object.assign(Object.assign({}, registrationParams), { positionID: registrationParams.positionID, photo: file }), token);
             return {
