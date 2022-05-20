@@ -1,0 +1,1 @@
+//# sourceMappingURL=tiny-png-adapter.interface.js.map
