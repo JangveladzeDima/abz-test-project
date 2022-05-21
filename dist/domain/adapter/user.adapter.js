@@ -30,6 +30,9 @@ let UserAdapter = class UserAdapter {
         const deleteToken = await this.tokenRepository.get({
             token: parseToken
         });
+        if (userParams.photo.mimetype !== 'image/jpeg') {
+            throw new common_1.HttpException('file should by image/jpeg format', common_1.HttpStatus.UNPROCESSABLE_ENTITY);
+        }
         if (deleteToken) {
             throw new common_1.HttpException('The token expired.', common_1.HttpStatus.UNAUTHORIZED);
         }
@@ -49,7 +52,7 @@ let UserAdapter = class UserAdapter {
             filename: userParams.email
         });
         await this.tokenRepository.create({ token: parseToken });
-        return this.userRepository.create(Object.assign(Object.assign({}, userParams), { positionID: Number(userParams.positionID), photo: logo }));
+        return this.userRepository.create(Object.assign(Object.assign({}, userParams), { positionID: Number(userParams.position_id), photo: logo }));
     }
     async get(filter) {
         const user = await this.userRepository.get(filter);
@@ -57,6 +60,37 @@ let UserAdapter = class UserAdapter {
             throw new common_1.HttpException('The user with the requested identifier does not exist', common_1.HttpStatus.NOT_FOUND);
         }
         return user;
+    }
+    async getUserPagination(page, count) {
+        if (page < 1) {
+            throw new common_1.HttpException('The page must be at least 1.', common_1.HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        if (count < 1 || count > 100) {
+            throw new common_1.HttpException('The page must be at least 1 and less 100', common_1.HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+        const users = await this.userRepository.getAll();
+        const total_users = users.length;
+        const total_pages = Math.round(total_users / count);
+        let next_url = null;
+        if (total_pages !== page) {
+            next_url = 'https://protected-spire-02667.herokuapp.com/users/' + `page=${page + 1}&count=${count}`;
+        }
+        let prev_url = null;
+        if (page - 1 >= 1) {
+            prev_url = 'https://protected-spire-02667.herokuapp.com/users/' + `page=${page - 1}&count=${count}`;
+        }
+        const links = {
+            next_url,
+            prev_url
+        };
+        return {
+            page,
+            total_pages,
+            total_users,
+            count,
+            links,
+            users
+        };
     }
 };
 UserAdapter = __decorate([

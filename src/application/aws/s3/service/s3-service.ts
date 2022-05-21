@@ -14,7 +14,7 @@ export class S3Service implements IS3Service {
         const uploadedFile = await this.s3.upload({
             Body: fileParams.file,
             Bucket: 'company-logos-storage',
-            Key: fileParams.filename
+            Key: fileParams.filename+'.jpg'
         }).promise()
         return uploadedFile.Location
     }

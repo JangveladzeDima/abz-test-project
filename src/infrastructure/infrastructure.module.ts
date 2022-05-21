@@ -1,12 +1,12 @@
-import { Module } from "@nestjs/common";
-import { UserController } from "./controller/user.controller";
-import { TypeOrmModule } from "@nestjs/typeorm";
-import { DomainModule } from "../domain/domain.module";
-import { TokenController } from "./controller/token.controller";
-import { UserEntity } from "./entity/user/user.entity";
-import { PositionEntity } from "./entity/position/position.entity";
-import { TokenEntity } from "./entity/token/token.entity";
-import { resolveConfig } from "prettier";
+import {Module} from "@nestjs/common";
+import {UserController} from "./controller/user.controller";
+import {TypeOrmModule} from "@nestjs/typeorm";
+import {DomainModule} from "../domain/domain.module";
+import {TokenController} from "./controller/token.controller";
+import {UserEntity} from "./entity/user/user.entity";
+import {PositionEntity} from "./entity/position/position.entity";
+import {TokenEntity} from "./entity/token/token.entity";
+import {PositionController} from "./controller/position.controller";
 
 @Module({
     imports: [
@@ -23,13 +23,12 @@ import { resolveConfig } from "prettier";
                 }
             },
             entities: [UserEntity, PositionEntity, TokenEntity],
-            // autoLoadEntities: true,
             synchronize: true,
-            logging:false
+            logging: false
         }),
         DomainModule
     ],
-    controllers: [UserController, TokenController]
+    controllers: [UserController, TokenController, PositionController]
 })
 export class InfrastructureModule {
 }

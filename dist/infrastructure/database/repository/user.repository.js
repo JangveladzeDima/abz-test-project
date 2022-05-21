@@ -27,6 +27,9 @@ let UserRepository = class UserRepository {
     get(filter) {
         return this.userRepository.findOneBy(filter);
     }
+    getAll() {
+        return this.userRepository.find({});
+    }
 };
 UserRepository = __decorate([
     (0, common_1.Injectable)(),

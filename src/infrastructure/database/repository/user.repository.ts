@@ -20,5 +20,8 @@ export class UserRepository implements IUserRepository {
     get(filter: IUserFilter): Promise<IUser> {
         return this.userRepository.findOneBy(filter)
     }
+    getAll(): Promise<IUser[]> {
+        return this.userRepository.find({})
+    }
 
 }

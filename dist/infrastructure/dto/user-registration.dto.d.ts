@@ -3,6 +3,6 @@ export declare class UserRegistrationDto {
     name: string;
     email: string;
     phone: string;
-    positionID: string;
+    position_id: string;
     photo?: Express.Multer.File;
 }

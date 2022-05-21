@@ -26,10 +26,8 @@ let UserController = class UserController {
     }
     async userRegistration(registrationParams, file, req) {
         try {
-            this.logger.log(registrationParams);
-            this.logger.log(file);
             const token = req.headers['authorization'];
-            const user = await this.userAdapter.create(Object.assign(Object.assign({}, registrationParams), { positionID: registrationParams.positionID, photo: file }), token);
+            const user = await this.userAdapter.create(Object.assign(Object.assign({}, registrationParams), { position_id: registrationParams.position_id, photo: file }), token);
             return {
                 "success": true,
                 "user_id": user.ID,
@@ -61,10 +59,23 @@ let UserController = class UserController {
             }, err.status);
         }
     }
+    async getUserPagination(page, count) {
+        try {
+            const users = await this.userAdapter.getUserPagination(page, count);
+            return users;
+        }
+        catch (err) {
+            this.logger.error(err.message);
+            throw new common_1.HttpException({
+                "success": false,
+                message: err.message
+            }, err.status);
+        }
+    }
 };
 __decorate([
     (0, common_1.UseGuards)(jwt_guard_1.JwtAuthGuard),
-    (0, common_2.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
+    (0, common_2.UseInterceptors)((0, platform_express_1.FileInterceptor)('photo')),
     (0, common_1.Post)(''),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFile)()),
@@ -80,6 +91,14 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getUserById", null);
+__decorate([
+    (0, common_1.Get)(''),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('count')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, Number]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "getUserPagination", null);
 UserController = __decorate([
     (0, common_1.Controller)('/users'),
     __param(0, (0, common_1.Inject)(user_adapter_1.UserAdapter)),

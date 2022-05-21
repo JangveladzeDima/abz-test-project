@@ -14,4 +14,5 @@ export declare class UserController {
     getUserById(user_id: number): Promise<{
         user: import("../entity/user/user.interface").IUser;
     }>;
+    getUserPagination(page: number, count: number): Promise<import("../interface/user-pagination.interface").IUserPagination>;
 }

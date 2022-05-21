@@ -8,14 +8,15 @@ import {
     Post,
     UseGuards,
     UploadedFile,
-    Get, Param
+    Get, Param, Query
+
 } from "@nestjs/common";
-import { UserRegistrationDto } from "../dto/user-registration.dto";
-import { UserAdapter } from "../../domain/adapter/user.adapter";
-import { IUserAdapter } from "../../domain/port/user-adapter.interface";
-import { JwtAuthGuard } from "../../application/auth/guard/jwt.guard";
-import { UseInterceptors } from "@nestjs/common";
-import { FileInterceptor } from "@nestjs/platform-express";
+import {UserRegistrationDto} from "../dto/user-registration.dto";
+import {UserAdapter} from "../../domain/adapter/user.adapter";
+import {IUserAdapter} from "../../domain/port/user-adapter.interface";
+import {JwtAuthGuard} from "../../application/auth/guard/jwt.guard";
+import {UseInterceptors} from "@nestjs/common";
+import {FileInterceptor} from "@nestjs/platform-express";
 
 @Controller('/users')
 export class UserController {
@@ -27,7 +28,7 @@ export class UserController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @UseInterceptors(FileInterceptor('file'))
+    @UseInterceptors(FileInterceptor('photo'))
     @Post('')
     async userRegistration(
         @Body() registrationParams: UserRegistrationDto,
@@ -35,12 +36,10 @@ export class UserController {
         @Req() req
     ) {
         try {
-            this.logger.log(registrationParams)
-            this.logger.log(file)
             const token = req.headers['authorization']
             const user = await this.userAdapter.create({
                 ...registrationParams,
-                positionID: registrationParams.positionID,
+                position_id: registrationParams.position_id,
                 photo: file
             }, token)
             return {
@@ -66,6 +65,23 @@ export class UserController {
             return {
                 user
             }
+        } catch (err) {
+            this.logger.error(err.message)
+            throw new HttpException({
+                "success": false,
+                message: err.message
+            }, err.status)
+        }
+    }
+
+    @Get('')
+    async getUserPagination(
+        @Query('page') page: number,
+        @Query('count') count: number
+    ) {
+        try {
+            const users = await this.userAdapter.getUserPagination(page, count)
+            return users
         } catch (err) {
             this.logger.error(err.message)
             throw new HttpException({

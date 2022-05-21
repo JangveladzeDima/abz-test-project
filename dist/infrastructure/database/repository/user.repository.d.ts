@@ -8,4 +8,5 @@ export declare class UserRepository implements IUserRepository {
     constructor(userRepository: Repository<UserEntity>);
     create(user: IUser): Promise<IUser>;
     get(filter: IUserFilter): Promise<IUser>;
+    getAll(): Promise<IUser[]>;
 }

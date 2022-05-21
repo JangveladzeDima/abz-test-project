@@ -15,6 +15,7 @@ const token_controller_1 = require("./controller/token.controller");
 const user_entity_1 = require("./entity/user/user.entity");
 const position_entity_1 = require("./entity/position/position.entity");
 const token_entity_1 = require("./entity/token/token.entity");
+const position_controller_1 = require("./controller/position.controller");
 let InfrastructureModule = class InfrastructureModule {
 };
 InfrastructureModule = __decorate([
@@ -38,7 +39,7 @@ InfrastructureModule = __decorate([
             }),
             domain_module_1.DomainModule
         ],
-        controllers: [user_controller_1.UserController, token_controller_1.TokenController]
+        controllers: [user_controller_1.UserController, token_controller_1.TokenController, position_controller_1.PositionController]
     })
 ], InfrastructureModule);
 exports.InfrastructureModule = InfrastructureModule;
