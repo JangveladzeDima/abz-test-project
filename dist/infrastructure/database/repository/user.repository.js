@@ -25,7 +25,7 @@ let UserRepository = class UserRepository {
         return this.userRepository.save(user);
     }
     get(filter) {
-        return this.userRepository.findOneBy(filter);
+        return this.userRepository.findOne(filter);
     }
     getAll() {
         return this.userRepository.find({});

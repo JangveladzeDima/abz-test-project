@@ -25,7 +25,7 @@ let TokenRepository = class TokenRepository {
         return this.tokenRepository.save(tokenParams);
     }
     get(filter) {
-        return this.tokenRepository.findOneBy(filter);
+        return this.tokenRepository.findOne(filter);
     }
 };
 TokenRepository = __decorate([

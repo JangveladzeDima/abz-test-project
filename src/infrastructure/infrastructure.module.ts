@@ -12,11 +12,11 @@ import {PositionController} from "./controller/position.controller";
     imports: [
         TypeOrmModule.forRoot({
             type: 'postgres',
-            host: 'ec2-52-18-116-67.eu-west-1.compute.amazonaws.com',//'127.0.0.1',
+            host: process.env.DATABASE_HOST,
             port: 5432,
-            username: 'dttzsjjaiyxahs',//'postgres',
-            password: '3b71271f628582c05d2da0e9a37c0099abcdc3d2e8b348ed179a5af964e1e17a',//'dikadika007',
-            database: 'deub5k94jg21rn',//'development-company',
+            username: process.env.DATABASE_USER,
+            password: process.env.DATABASE_PASSWORD,
+            database: process.env.DATABASE_NAME,
             extra: {
                 ssl: {
                     rejectUnauthorized: false

@@ -1,10 +1,10 @@
-FROM node
+FROM node:alpine
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm i
 
 COPY ./dist ./
 

@@ -7,8 +7,8 @@ import { JwtStrategy } from "./strategy/jwt.strategy";
 @Module({
     imports: [
         JwtModule.register({
-            secret: 'racxa',
-            signOptions: { expiresIn: '24000000' },
+            secret: process.env.SECRET,
+            signOptions: { expiresIn: process.env.TIME },
         }),
     ],
     providers: [JwtAuthGuard, JwtAuthService, JwtStrategy],

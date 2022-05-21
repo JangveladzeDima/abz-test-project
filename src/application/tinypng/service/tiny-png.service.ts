@@ -3,7 +3,7 @@ import { ITinyPngService } from "../port/tiny-png-service.interface";
 import * as tinify from 'tinify'
 
 // @ts-ignore
-tinify.key = '5kBXzKD316MBl32zGFSMkQTdL85qZpf7'
+tinify.key = process.env.TINYFY_KEY
 
 @Injectable()
 export class TinyPngService implements ITinyPngService {

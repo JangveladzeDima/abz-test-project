@@ -18,6 +18,6 @@ export class TokenRepository implements ITokenRepository {
     }
 
     get(filter: ITokenFilter): Promise<IToken> {
-        return this.tokenRepository.findOneBy(filter)
+        return this.tokenRepository.findOne(filter)
     }
 }
